@@ -14,20 +14,20 @@ function App() {
 
   return (
     <>
-      <header className={"container"}>
-        <div className={"grid"}>
+      <header className="container">
+        <div className="grid">
           <article>
               Créer une présentation
           </article>
         </div>
       </header>
 
-      <main className={"container"}>
-        <div className={"row"}>
+      <main className="container">
+        <div className="row">
             {presentations.map((presentation, index) => {
               presentation.id = index;
                 return (
-                  <div className={"col-xs-12 col-sm-6 col-md-4 col-lg-3"} key={index}>
+                  <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3" key={index}>
                     <Presentation id={presentation.id} title={presentation.title} created_at={presentation.created_at} image={presentation.image} />
                   </div>
                 );

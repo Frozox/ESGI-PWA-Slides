@@ -3,10 +3,10 @@ function Presentation(props) {
   const final_created_at = new Date(created_at).toDateString();
   return (
     <>
-      <div className={"presentation"}>
+      <div className="presentation">
 
         <div style={{position: "relative"}}>
-          <img className={"image"} src={image} alt={"presentation"} id={"presentation_img_"+id}/>
+          <img className="image" src={image} alt="presentation" id={"presentation_img_"+id}/>
           <div className="middle">
             <button className="text outline">Consulter</button>
             <button className="text outline secondary">Supprimer</button>
@@ -14,13 +14,13 @@ function Presentation(props) {
         </div>
 
         <article style={{ marginTop: 0 }} id={"presentation_" + id}>
-            <div className={"row center-md center-lg center-sm center-xs"}>
-              <div className={"col-md-12 col-xs-12"}>
+            <div className="row center-md center-lg center-sm center-xs">
+              <div className="col-md-12 col-xs-12">
                 <h5>{title}</h5>
-                <a className={"secondary"}></a>
+                <a className="secondary"></a>
               </div>
 
-              <div className={"col-md-12 col-xs-12"}>
+              <div className="col-md-12 col-xs-12">
                 <span>{final_created_at}</span>
               </div>
             </div>
