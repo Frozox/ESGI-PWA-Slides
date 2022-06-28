@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+
+  # NodeJS
+  node:
+    container_name: node_pwa
+    image: node:14-alpine
+    volumes:
+      - ./pwa-slides-react:/app
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    user: node
+    command: npm run dev
+    ports:
+      - "3000:3000"
