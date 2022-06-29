@@ -1,12 +1,12 @@
 import {Route, Routes} from "react-router-dom";
 import {HomePage} from "../pages/HomePage";
-import AppPresentation from "../components/AppPresentation";
+import {PresentationPage} from "../pages/PresentationPage";
 
 export const MyRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path={`/presentation/:id`} element={<AppPresentation />} />
+      <Route path={`/presentation/:id`} element={<PresentationPage />} />
     </Routes>
   )
 }

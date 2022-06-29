@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import '@picocss/pico'
 import 'flexboxgrid'
 import './index.css'
+import 'react-trumbowyg/dist/trumbowyg.min.css';
 
 /* Import components */
 import App from './App'

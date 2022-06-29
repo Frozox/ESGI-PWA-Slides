@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
  * @returns {JSX.Element}
  * @constructor
  */
-function Presentation(props) {
+const Presentation = (props) => {
   const { id, title, created_at, image } = props;
   const final_created_at = new Date(created_at).toDateString();
 
