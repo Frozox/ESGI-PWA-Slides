@@ -575,3 +575,4 @@ FodyWeavers.xsd
 ./firebase.json
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,phpstorm,vim
+package-json.lock
