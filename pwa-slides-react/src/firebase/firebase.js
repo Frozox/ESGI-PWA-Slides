@@ -15,7 +15,9 @@ import {
     setPersistence,
     browserLocalPersistence,
     onAuthStateChanged,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signInWithRedirect,
+    GithubAuthProvider
 } from "firebase/auth";
 
 //import firebaseConfig from './../../firebase.json';
@@ -47,7 +49,7 @@ export async function createUser(email, password) {
     });
 }
 
-export async function addUserRealTimeBDD(email, password){
+export async function addUserRealTimeBDD(email, password) {
     const user = auth.currentUser;
     console.log(user);
     push(ref(database, `/users`), {
@@ -60,21 +62,37 @@ export async function addUserRealTimeBDD(email, password){
 
 export async function signIn(email, password) {
     signInWithEmailAndPassword(auth, email, password)
-    .then(function() {
-        const user = auth.currentUser;
+        .then(function () {
+            const user = auth.currentUser;
 
-        push(ref(database, `/users`), {
-            uid: user.uid,
-            email: email,
-            password: password,
-            lastConnexion: serverTimestamp(),
-        });
-    })
+            push(ref(database, `/users`), {
+                uid: user.uid,
+                email: email,
+                password: password,
+                lastConnexion: serverTimestamp(),
+            });
+        })
 }
 
-export function getAuthState(cb = () => {}) {
+export function getAuthState(cb = () => { }) {
     onAuthStateChanged(auth, (user) => {
-      if (user) return cb(user);
-      cb(false);
+        if (user) return cb(user);
+        cb(false);
     });
-  }
+}
+
+export function signInWithGithub() {
+    const provider = new GithubAuthProvider();
+    signInWithRedirect(auth, provider);
+}
+
+export async function addUserRealTimeBDDGithub() {
+    const user = auth.currentUser;
+    console.log(user);
+    push(ref(database, `/users`), {
+        uid: user.uid,
+        email: email,
+        //password: password,
+        lastConnexion: serverTimestamp(),
+    });
+}

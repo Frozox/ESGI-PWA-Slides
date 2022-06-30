@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn } from "../firebase/firebase.js";
+import { signIn, signInWithGithub, addUserRealTimeBDDGithub } from "../firebase/firebase.js";
 
 export default function AppLogin() {
     //const navigate = useNavigate();
@@ -16,12 +16,27 @@ export default function AppLogin() {
             console.log("User Login");
         }
     }
-    return ( 
-        <form onSubmit={ handleLogin }>
-            <input type = "email" />
-            <input type = "password" />
-            <button> Login </button> 
-        </form>
+
+    const handleLoginGithub = (e) => {
+        e.preventDefault();
+        const user = signInWithGithub();
+        if (user) {
+            //navigate("/");
+            addUserRealTimeBDDGithub();
+            //console.log(user);
+            console.log("User Login");
+        }
+    }
+    return (
+        <>
+            <form onSubmit={handleLogin}>
+                <input type="email" />
+                <input type="password" />
+                <button> Login </button>
+            </form>
+
+            <a onClick={handleLoginGithub} href="https://myges-slide.firebaseapp.com/__/auth/handler">Login with Github</a>
+        </>
     )
     customElements.define("app-register", AppRegister);
 }

@@ -3,9 +3,18 @@ import React from 'react'
 import AppRegister from './Component/app-register'
 import AppLogin from './Component/app-login'
 import { getUser, getAuthState } from "./firebase/firebase.js";
+import {
+    setRessources,
+    setRessource,
+    getRessources,
+    getRessource,
+    setCart,
+    getCart as getCartFromIdb,
+  } from "./idbHelpers";
 
-function App() {
-
+function App(network) {
+    console.log(network);
+    //if(network)
     let isUserLogged = getUser();
 
     getAuthState((user) => {
@@ -18,7 +27,7 @@ function App() {
       }
       //page(`/login?from=${location.pathname}`);
     });
-    
+
     return (
         <>
             <main className="container" >
