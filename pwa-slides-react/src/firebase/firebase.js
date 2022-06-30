@@ -15,6 +15,7 @@ import {
     setPersistence,
     browserLocalPersistence,
     onAuthStateChanged,
+    signInWithEmailAndPassword
 } from "firebase/auth";
 
 //import firebaseConfig from './../../firebase.json';
@@ -32,7 +33,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
-console.log(firebaseConfig);
+console.log(auth);
 
 export function getUser() {
     return onAuthStateChanged(auth, (user) => {
@@ -45,3 +46,35 @@ export async function createUser(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
     });
 }
+
+export async function addUserRealTimeBDD(email, password){
+    const user = auth.currentUser;
+    console.log(user);
+    push(ref(database, `/users`), {
+        uid: user.uid,
+        email: email,
+        password: password,
+        lastConnexion: serverTimestamp(),
+    });
+}
+
+export async function signIn(email, password) {
+    signInWithEmailAndPassword(auth, email, password)
+    .then(function() {
+        const user = auth.currentUser;
+
+        push(ref(database, `/users`), {
+            uid: user.uid,
+            email: email,
+            password: password,
+            lastConnexion: serverTimestamp(),
+        });
+    })
+}
+
+export function getAuthState(cb = () => {}) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) return cb(user);
+      cb(false);
+    });
+  }
