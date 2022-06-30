@@ -34,7 +34,7 @@ export const PresentationPage = () => {
           </div>
 
           <div className="col-xs-12 col-sm-10 col-md-10 col-lg-10" style={{marginTop:0}}>
-            <div>
+            <div style={{backgroundColor: "ivory"}}>
               <Trumbowyg
                 id={'react-trumbowyg'}
                 data={""}
