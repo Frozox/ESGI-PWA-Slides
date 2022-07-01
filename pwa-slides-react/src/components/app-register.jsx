@@ -13,16 +13,19 @@ export default function AppRegister() {
         if (user) {
             console.log(user);
             //navigate("/");
-            addUserRealTimeBDD(email, pwd);
-            console.log("Created user");
+            addUserRealTimeBDD(email, pwd).then(r => {
+                console.log(r);
+                console.log("Created user");
+            });
         }
     }
     return ( 
-        <form onSubmit={ handleRegister }>
-            <input type = "email" />
-            <input type = "password" />
-            <button> Register </button> 
+        <form id={"formRegister"} onSubmit={ handleRegister }>
+
+            <input type="email" name="login" placeholder="Nom d'utilisateur" aria-label="Login" autoComplete={"nickname"} required/>
+            <input type="password" name="password" placeholder="Mot de passe" aria-label="Password" autoComplete={"current-password"} required/>
+            <button type="submit" className="contrast">S'inscrire</button>
+
         </form>
     )
-    customElements.define("app-register", AppRegister);
 }
