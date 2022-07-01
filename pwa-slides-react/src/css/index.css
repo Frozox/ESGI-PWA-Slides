@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto Thin', sans-serif;
+}
+
 .image {
     opacity: 1;
     display: block;
