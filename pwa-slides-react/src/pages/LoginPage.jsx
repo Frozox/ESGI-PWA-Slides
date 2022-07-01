@@ -1,20 +1,18 @@
 import AppLogin from "../components/app-login";
-import '../css/login.css';
+import {ArticleTitle} from "../components/ArticleTitle";
+
 export const LoginPage = () => {
   return (
-    <main className="container">
+    <main className="container login-container">
       <article className="grid">
         <div>
-          <hgroup>
-            <h1>Connectez vous</h1>
-            <h2>Et bénéficier de toutes les fonctionnalités d'ESGI Slides...</h2>
-          </hgroup>
+          <ArticleTitle title="Connectez vous" subtitle="Et bénéficier de toutes les fonctionnalités d'ESGI Slides..." />
           <AppLogin />
           <span>
             <a href="/register">Créer un compte</a>
           </span>
         </div>
-        <div></div>
+        <div className={"hero-image"}></div>
       </article>
     </main>
   );
