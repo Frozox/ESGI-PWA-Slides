@@ -12,9 +12,9 @@ export default function AppRegister() {
         const user = createUser(email, pwd);
         if (user) {
             console.log(user);
-            //navigate("/");
             addUserRealTimeBDD(email, pwd);
             console.log("Created user");
+            navigate("/");
         }
     }
     return ( 
@@ -24,5 +24,5 @@ export default function AppRegister() {
             <button> Register </button> 
         </form>
     )
-    customElements.define("app-register", AppRegister);
+    customElements.define("AppRegister", AppRegister);
 }

@@ -1,1 +1,48 @@
 
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    width: 75%;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.presentation:hover .image {
+    opacity: 0.3;
+}
+
+.presentation:hover .middle {
+    opacity: 1;
+}
+
+.middle-button {
+    background-color: #04AA6D;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
+.slide-thumbnail {
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.slide-thumbnail-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5%;
+    box-shadow: black 0px 0px 10px;
+}

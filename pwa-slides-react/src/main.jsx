@@ -1,8 +1,18 @@
+/* Import React */
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import { BrowserRouter } from "react-router-dom";
+
+/* Import assets */
+import '@picocss/pico'
+import 'flexboxgrid'
 import './index.css'
+import 'react-trumbowyg/dist/trumbowyg.min.css';
+
+/* Import components */
+import App from './App'
 import checkConnectivity from "network-latency";
+
 
 checkConnectivity({
   timeToCount: 3,
@@ -25,6 +35,8 @@ document.addEventListener("connection-changed", ({ detail: state }) => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App network={NETWORK_STATE} />
+    <BrowserRouter>
+      <App network={NETWORK_STATE}/>
+    </BrowserRouter>
   </React.StrictMode>
 )

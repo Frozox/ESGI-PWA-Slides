@@ -1,43 +1,30 @@
-import '@picocss/pico'
-import React from 'react'
-import AppRegister from './Component/app-register'
-import AppLogin from './Component/app-login'
-import { getUser, getAuthState } from "./firebase/firebase.js";
-import {
-    setRessources,
-    setRessource,
-    getRessources,
-    getRessource,
-    setCart,
-    getCart as getCartFromIdb,
-  } from "./idbHelpers";
+import {MyRoutes} from './routes/routes';
+import { useNavigate } from "react-router-dom";
+import { getUser, getAuthState, databaseConnected } from "./firebase/firebase.js";
 
 function App(network) {
-    console.log(network);
-    //if(network)
-    let isUserLogged = getUser();
 
-    getAuthState((user) => {
-      isUserLogged = user;
-  
-      if (isUserLogged) {
-        const queryString = new URLSearchParams(location.search);
-        console.log(isUserLogged);
-        //return page(queryString.get("from") || location.pathname);
-      }
-      //page(`/login?from=${location.pathname}`);
-    });
+    
+const navigate = useNavigate();
 
-    return (
-        <>
-            <main className="container" >
-                <h1> Hello, world! </h1>
-                <p> This is a PicoCSS demo. </p>
-                <AppRegister />
-                <AppLogin />
-            </main>
-        </>
-    )
+let isUserLogged = getUser();
+
+getAuthState((user) => {
+  isUserLogged = user;
+
+  if (isUserLogged) {
+    const queryString = new URLSearchParams(location.search);
+    //console.log(isUserLogged);
+  }else{
+    //navigate("/login");
+  }
+});
+
+databaseConnected();
+
+  return (
+    <MyRoutes network={network}/>
+  );
 }
 
 export default App
