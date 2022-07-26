@@ -1,8 +1,16 @@
-const SlideThumbnail = () => {
+/**
+ * Composant Presentation
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
+
+const SlideThumbnail = (props) => {
+  const { id } = props;
   return (
-    <div className="slide-thumbnail">
+    <div className="slide-thumbnail" id={id}>
       <div className="slide-thumbnail-image">
-        <img src="http://via.placeholder.com/400x300" alt="presentation" />
+        <img src="http://via.placeholder.com/400x300" loading="lazy" alt="presentation" />
       </div>
     </div>
   )
