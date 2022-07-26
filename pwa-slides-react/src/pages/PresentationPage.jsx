@@ -3,6 +3,8 @@ import Trumbowyg from 'react-trumbowyg';
 import { addNewSlide, getSlideDiaporama, modifyDiaporama, updateSlideContent } from "../firebase/firebase";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import React from "react";
+//import Reveal from "reveal.js";
+//import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 
 export const PresentationPage = () => {
 
@@ -17,6 +19,11 @@ export const PresentationPage = () => {
     slides = data;
   });
 
+  /*let deck = new Reveal({
+    plugins: [Markdown]
+  })
+  deck.initialize();*/
+
   const edit_user = modifyDiaporama(id);
 
   const handleNewSlide = () => {
@@ -29,7 +36,7 @@ export const PresentationPage = () => {
   let content = slides[0].content;
 
   const handleContent = (event, id_slide) => {
-    if(slideInterval){
+    if (slideInterval) {
       clearInterval(slideInterval);
     }
 
@@ -38,9 +45,9 @@ export const PresentationPage = () => {
       slides = data;
     });
 
-    if(slideStyle == id_slide){
+    if (slideStyle == id_slide) {
       document.querySelectorAll(".slide-thumbnail-image")[id_slide].style.border = "solid 3px blue"
-    }else{
+    } else {
       document.querySelectorAll(".slide-thumbnail-image")[id_slide].style.border = "solid 3px blue"
       document.querySelectorAll(".slide-thumbnail-image")[slideStyle].style.border = "none";
       setSlideStyle(id_slide);
@@ -59,7 +66,7 @@ export const PresentationPage = () => {
   }
 
   const handleClose = () => {
-    if(slideInterval){
+    if (slideInterval) {
       clearInterval(slideInterval);
     }
     navigate("/");
