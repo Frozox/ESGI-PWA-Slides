@@ -14,7 +14,7 @@ const Presentation = (props) => {
   return (
     <div className="presentation">
       <div style={{position: "relative"}}>
-        <img className="image" src={image} alt="presentation" id={"presentation_img_"+id}/>
+        <img className="image" src={image} alt="presentation" id={"presentation_img_"+id} loading="lazy"/>
         <div className="middle">
           <button className="text outline" onClick={()=>navigate(`/presentation/${id}`, { state: { data: id } })}>Consulter</button>
           <button className="text outline secondary">Supprimer</button>

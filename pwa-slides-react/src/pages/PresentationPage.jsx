@@ -1,17 +1,17 @@
 import SlideThumbnail from "../components/SlideThumbnail";
 import Trumbowyg from 'react-trumbowyg';
 import { addNewSlide, getSlideDiaporama, modifyDiaporama, updateSlideContent } from "../firebase/firebase";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 
 export const PresentationPage = () => {
 
   const location = useLocation();
   const id = location.state.data;
-  console.log(id);
   const [slideInterval, setSlideInterval] = React.useState([]);
   let slides = [];
   const [slideStyle, setSlideStyle] = React.useState(0)
+  const navigate = useNavigate();
 
   getSlideDiaporama(id, (data) => {
     slides = data;
@@ -27,7 +27,6 @@ export const PresentationPage = () => {
   }
 
   let content = slides[0].content;
-  console.log(document.querySelectorAll(".slide-thumbnail-image"));
 
   const handleContent = (event, id_slide) => {
     if(slideInterval){
@@ -38,8 +37,7 @@ export const PresentationPage = () => {
     getSlideDiaporama(id, (data) => {
       slides = data;
     });
-    console.log(slideStyle)
-    console.log(id_slide)
+
     if(slideStyle == id_slide){
       document.querySelectorAll(".slide-thumbnail-image")[id_slide].style.border = "solid 3px blue"
     }else{
@@ -60,8 +58,17 @@ export const PresentationPage = () => {
     }, 3000));
   }
 
+  const handleClose = () => {
+    if(slideInterval){
+      clearInterval(slideInterval);
+    }
+    navigate("/");
+    console.log("return")
+  };
+
   return (
     <main className="container">
+      <button onClick={handleClose}>Quitter le diaporama</button>
       <article>
         <header>
           <hgroup>

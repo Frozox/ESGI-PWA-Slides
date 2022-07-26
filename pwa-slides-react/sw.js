@@ -1,42 +1,32 @@
-const CACHE_NAME = "V1";
-
-const precachedRessources = [
-  "/",
-  "./src/pages/App.jsx",
+var CACHE_NAME = 'myGes-Slide';
+var urlsToCache = [
+    '/',
 ];
 
-const excludeFromCache = ["www.google.com", "localhost:3000"];
-
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      cache.addAll(precachedRessources);
-    })
-  );
+self.addEventListener('install', function(event) {
+    // Perform install steps
+    console.log('installing sw');
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                console.log('Opened cache');
+                var x = cache.addAll(urlsToCache);
+                console.log('cache added');
+                return x;
+            })
+    );
 });
 
-self.addEventListener("fetch", (event) => {
-  const url = new URL(event.request.url);
-
-  if (excludeFromCache.includes(url.host)) return;
-
-  event.respondWith(
-    caches
-      .match(event.request)
-      .then((ressource) => {
-        return (
-          ressource ||
-          fetch(event.request).then((response) => {
-            const clonedRespond = response.clone();
-
-            caches
-              .open(CACHE_NAME)
-              .then((cache) => cache.put(event.request, clonedRespond));
-
-            return response;
-          })
-        );
-      })
-      .catch(console.error)
-  );
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request)
+            .then(function(response) {
+                    // Cache hit - return response
+                    if (response) {
+                        return response;
+                    }
+                    return fetch(event.request);
+                }
+            )
+    );
 });

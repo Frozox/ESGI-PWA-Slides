@@ -1,31 +1,22 @@
-import { Navigate, useNavigate } from "react-router-dom";
 import Presentation from "../components/Presentation";
-import { getUser, getAuthState, deleteEditDiaporama, createDiaporam, getAllDiaporama } from "../firebase/firebase.js";
-import {
-  setRessources,
-  setRessource,
-  getRessources,
-  getRessource,
-  setCart,
-  getCart as getCartFromIdb,
-} from "../idbHelpers";
+import { createDiaporama, getAllDiaporama } from "../firebase/firebase.js";
+import React from "react";
 
-export const HomePage = (network) => {
+export const HomePage = () => {
 
-  //const deleteUser = deleteEditDiaporama();
-  //console.log(deleteUser);
-  const navigate = useNavigate();
+  const [diapos, setDiapos] = React.useState([]);
+  
+  React.useEffect(() => {
+    getAllDiaporama((diapos) => {
+      setDiapos(diapos);
+    });
+  },[diapos.length]);
 
   const handleCreateDiapo = () => {
     console.log("Create diapo");
-    const diapo = createDiaporam();
+    createDiaporama();
   }
-  //get all diaporama created and display them
-  let diapos = [];
-  getAllDiaporama((comments) => {
-    diapos = comments
-  });
-  console.log(diapos);
+
   return (
     <>
       <header className="container">

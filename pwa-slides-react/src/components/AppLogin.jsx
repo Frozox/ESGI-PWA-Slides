@@ -3,17 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { signIn, signInWithGithub, addUserRealTimeBDDGithub } from "../firebase/firebase.js";
 
 export default function AppLogin() {
+
     const navigate = useNavigate();
+
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.querySelector("input[type=email]").value;
         const pwd = e.target.querySelector("input[type=password]").value;
         const user = signIn(email, pwd);
         if (user) {
+            console.log(user);
             navigate("/");
             //addUserRealTimeBDD(email, pwd);
-
-            console.log("User Login");
+            //console.log("User Login");
         }
     }
 
@@ -23,7 +25,7 @@ export default function AppLogin() {
         console.log(user);
         if (user) {
             navigate("/");
-            addUserRealTimeBDDGithub();
+            //addUserRealTimeBDDGithub();
             console.log(user);
             console.log("User Login");
         }

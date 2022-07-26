@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUser, addUserRealTimeBDD } from "../firebase/firebase.js";
 
 export default function AppRegister() {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const handleRegister = (e) => {
         e.preventDefault();
         const email = e.target.querySelector("input[type=email]").value;
@@ -11,8 +11,8 @@ export default function AppRegister() {
 
         const user = createUser(email, pwd);
         if (user) {
-            console.log(user);
-            addUserRealTimeBDD(email, pwd);
+            //console.log(user);
+            //addUserRealTimeBDD(email, pwd);
             console.log("Created user");
             navigate("/");
         }

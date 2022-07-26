@@ -38,7 +38,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
-console.log(auth);
 
 export function getUser() {
     return onAuthStateChanged(auth, (user) => {
@@ -54,7 +53,6 @@ export async function createUser(email, password) {
 
 export async function addUserRealTimeBDD(email, password) {
     const user = auth.currentUser;
-    console.log(user);
     push(ref(database, `/users`), {
         uid: user.uid,
         email: email,
@@ -113,11 +111,10 @@ export function modifyDiaporama(diaporama_id) {
 export function deleteEditDiaporama() {
     const user = auth.currentUser;
     const editUser = ref(database, `/edit/` + user.uid);
-    console.log(editUser);
     remove(editUser);
 }
 
-export function createDiaporam() {
+export function createDiaporama() {
     const user = auth.currentUser;
     push(ref(database, `/diaporamas`), {
         uid_creator: user.uid,
@@ -177,7 +174,5 @@ export function addNewSlide(id) {
 export function updateSlideContent(id, content, id_slide) {
     update(ref(database, `/diaporamas/${id}/slide/${id_slide}`), {
         content: content,
-        //uid_creator: user.uid,
-        //lastModification: serverTimestamp(),
     });
 }
