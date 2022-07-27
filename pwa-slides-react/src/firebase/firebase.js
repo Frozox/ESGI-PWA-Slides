@@ -21,9 +21,6 @@ import {
     signInWithRedirect,
     GithubAuthProvider
 } from "firebase/auth";
-import { Navigate } from "react-router-dom";
-
-//import firebaseConfig from './../../firebase.json';
 
 const firebaseConfig = {
     apiKey: "AIzaSyA52bpCwKv2e5OouM8ZGZnDmwx2r71iTJE",
