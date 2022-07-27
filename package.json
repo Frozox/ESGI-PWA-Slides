@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Frozox/ESGI-PWA-Slides/issues"
   },
-  "homepage": "https://github.com/Frozox/ESGI-PWA-Slides#readme"
+  "homepage": "https://github.com/Frozox/ESGI-PWA-Slides#readme",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
 }
