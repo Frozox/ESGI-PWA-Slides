@@ -42,6 +42,10 @@ export function getUser() {
     });
 }
 
+export function getConnectUser(){
+    return auth.currentUser;
+}
+
 export async function createUser(email, password) {
     return setPersistence(auth, browserLocalPersistence).then(() => {
         return createUserWithEmailAndPassword(auth, email, password);

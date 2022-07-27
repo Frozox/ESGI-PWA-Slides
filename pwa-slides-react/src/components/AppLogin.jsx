@@ -38,7 +38,7 @@ export default function AppLogin() {
                     <input type="password" />
                     <button> Login </button>
                 </form>
-
+                <a href="/register">Pas de compte ?</a>
                 <a onClick={handleLoginGithub} href="https://myges-slide.firebaseapp.com/__/auth/handler">Login with Github</a>
             </Suspense>
         </>

@@ -19,6 +19,11 @@ export const PresentationPage = () => {
 
   const handleNewSlide = () => {
     addNewSlide(id);
+    //reload div
+    getSlideDiaporama(id, (data) => {
+      slides = data;
+      console.log(slides);
+    });
   }
 
   let content = slides[0].content;
