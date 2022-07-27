@@ -1,8 +1,8 @@
 import SlideThumbnail from "../components/SlideThumbnail";
 import Trumbowyg from 'react-trumbowyg';
-import { addNewSlide, getSlideDiaporama, modifyDiaporama, updateSlideContent } from "../firebase/firebase";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import React from "react";
+import { addNewSlide, getSlideDiaporama, updateSlideContent } from "../firebase/firebase";
+import { useLocation, useNavigate } from "react-router-dom";
+import React, { Suspense } from "react";
 
 export const PresentationPage = () => {
 
@@ -17,19 +17,14 @@ export const PresentationPage = () => {
     slides = data;
   });
 
-  const edit_user = modifyDiaporama(id);
-
   const handleNewSlide = () => {
-    const newSlide = {
-      content: "",
-    };
     addNewSlide(id);
   }
 
   let content = slides[0].content;
 
   const handleContent = (event, id_slide) => {
-    if(slideInterval){
+    if (slideInterval) {
       clearInterval(slideInterval);
     }
 
@@ -38,9 +33,9 @@ export const PresentationPage = () => {
       slides = data;
     });
 
-    if(slideStyle == id_slide){
+    if (slideStyle == id_slide) {
       document.querySelectorAll(".slide-thumbnail-image")[id_slide].style.border = "solid 3px blue"
-    }else{
+    } else {
       document.querySelectorAll(".slide-thumbnail-image")[id_slide].style.border = "solid 3px blue"
       document.querySelectorAll(".slide-thumbnail-image")[slideStyle].style.border = "none";
       setSlideStyle(id_slide);
@@ -59,7 +54,7 @@ export const PresentationPage = () => {
   }
 
   const handleClose = () => {
-    if(slideInterval){
+    if (slideInterval) {
       clearInterval(slideInterval);
     }
     navigate("/");
@@ -67,44 +62,46 @@ export const PresentationPage = () => {
   };
 
   return (
-    <main className="container">
-      <button onClick={handleClose}>Quitter le diaporama</button>
-      <article>
-        <header>
-          <hgroup>
-            <h1>PWA Slides</h1>
-            <h2>Listes des slides pour la présentation X</h2>
-          </hgroup>
-        </header>
+    <Suspense fallback={<div>Loading...</div>}>
+      <main className="container">
+        <button onClick={handleClose}>Quitter le diaporama</button>
+        <article>
+          <header>
+            <hgroup>
+              <h1>PWA Slides</h1>
+              <h2>Listes des slides pour la présentation X</h2>
+            </hgroup>
+          </header>
 
-        <div className="row">
-          <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-            <div className="row" id="slide">
+          <div className="row">
+            <div className="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+              <div className="row" id="slide">
 
-              {slides.map((slide, index) => {
-                return (
-                  <div className="col-md-12" key={index} onClick={event => handleContent(event, index)}>
-                    <SlideThumbnail id={slide.id} />
-                  </div>
-                );
-              })
-              }
-              <button onClick={handleNewSlide}>+</button>
+                {slides.map((slide, index) => {
+                  return (
+                    <div className="col-md-12" key={index} onClick={event => handleContent(event, index)}>
+                      <SlideThumbnail id={slide.id} />
+                    </div>
+                  );
+                })
+                }
+                <button onClick={handleNewSlide}>+</button>
+              </div>
+            </div>
+
+            <div className="col-xs-12 col-sm-10 col-md-10 col-lg-10" style={{ marginTop: 0 }}>
+              <div style={{ backgroundColor: "ivory" }}>
+                <Trumbowyg
+                  id={'react-trumbowyg'}
+                  data={content}
+                  placeholder='Type your text!'
+                />
+              </div>
             </div>
           </div>
-
-          <div className="col-xs-12 col-sm-10 col-md-10 col-lg-10" style={{ marginTop: 0 }}>
-            <div style={{ backgroundColor: "ivory" }}>
-              <Trumbowyg
-                id={'react-trumbowyg'}
-                data={content}
-                placeholder='Type your text!'
-              />
-            </div>
-          </div>
-        </div>
-      </article>
-    </main>
+        </article>
+      </main>
+    </Suspense>
   )
 }
 

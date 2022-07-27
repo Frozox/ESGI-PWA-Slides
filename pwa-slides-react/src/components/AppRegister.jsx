@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUser, addUserRealTimeBDD } from "../firebase/firebase.js";
+import { createUser } from "../firebase/firebase.js";
 
 export default function AppRegister() {
     const navigate = useNavigate();
@@ -17,14 +17,15 @@ export default function AppRegister() {
             navigate("/");
         }
     }
-    return ( 
-        <form id={"formRegister"} onSubmit={ handleRegister }>
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <form id={"formRegister"} onSubmit={handleRegister}>
 
-            <input type="email" name="login" placeholder="Nom d'utilisateur" aria-label="Login" autoComplete={"nickname"} required/>
-            <input type="password" name="password" placeholder="Mot de passe" aria-label="Password" autoComplete={"current-password"} required/>
-            <button type="submit" className="contrast">S'inscrire</button>
+                <input type="email" name="login" placeholder="Nom d'utilisateur" aria-label="Login" autoComplete={"nickname"} required />
+                <input type="password" name="password" placeholder="Mot de passe" aria-label="Password" autoComplete={"current-password"} required />
+                <button type="submit" className="contrast">S'inscrire</button>
 
-        </form>
+            </form>
+        </Suspense>
     )
-    customElements.define("AppRegister", AppRegister);
 }

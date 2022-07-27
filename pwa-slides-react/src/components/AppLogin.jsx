@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn, signInWithGithub, addUserRealTimeBDDGithub } from "../firebase/firebase.js";
+import { signIn, signInWithGithub } from "../firebase/firebase.js";
 
 export default function AppLogin() {
 
@@ -32,14 +32,15 @@ export default function AppLogin() {
     }
     return (
         <>
-            <form onSubmit={handleLogin}>
-                <input type="email" />
-                <input type="password" />
-                <button> Login </button>
-            </form>
+            <Suspense fallback={<div>Loading...</div>}>
+                <form onSubmit={handleLogin}>
+                    <input type="email" />
+                    <input type="password" />
+                    <button> Login </button>
+                </form>
 
-            <a onClick={handleLoginGithub} href="https://myges-slide.firebaseapp.com/__/auth/handler">Login with Github</a>
+                <a onClick={handleLoginGithub} href="https://myges-slide.firebaseapp.com/__/auth/handler">Login with Github</a>
+            </Suspense>
         </>
     )
-    customElements.define("AppLogin", AppLogin);
 }
