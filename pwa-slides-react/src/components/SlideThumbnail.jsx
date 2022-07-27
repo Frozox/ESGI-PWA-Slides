@@ -10,7 +10,7 @@ const SlideThumbnail = (props) => {
   return (
     <div className="slide-thumbnail" id={id}>
       <div className="slide-thumbnail-image">
-        <img src="http://via.placeholder.com/400x300" loading="lazy" alt="presentation" />
+        <img src="/assets/img/400x300.png" loading="lazy" alt="presentation" />
       </div>
     </div>
   )

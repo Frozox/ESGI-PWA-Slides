@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { createUser, addUserRealTimeBDD } from "../firebase/firebase.js";
+import { createUser } from "../firebase/firebase.js";
 
 export default function AppRegister() {
     const navigate = useNavigate();
@@ -26,5 +26,4 @@ export default function AppRegister() {
 
         </form>
     )
-    customElements.define("AppRegister", AppRegister);
 }

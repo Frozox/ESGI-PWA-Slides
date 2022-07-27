@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 /**
  * Composant Presentation
  * @param props

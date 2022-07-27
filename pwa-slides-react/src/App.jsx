@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { MyRoutes } from './routes/routes';
 import { useNavigate } from "react-router-dom";
 import { getUser, getAuthState } from "./firebase/firebase.js";

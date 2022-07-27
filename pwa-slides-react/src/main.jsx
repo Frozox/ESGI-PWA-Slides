@@ -13,8 +13,6 @@ import 'react-trumbowyg/dist/trumbowyg.min.css';
 /* Import components */
 import App from './App'
 
-import { getUser, getAuthState } from "./firebase/firebase.js";
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>

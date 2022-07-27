@@ -1,7 +1,7 @@
 import SlideThumbnail from "../components/SlideThumbnail";
 import Trumbowyg from 'react-trumbowyg';
-import { addNewSlide, getSlideDiaporama, modifyDiaporama, updateSlideContent } from "../firebase/firebase";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { addNewSlide, getSlideDiaporama, updateSlideContent } from "../firebase/firebase";
+import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 
 export const PresentationPage = () => {
@@ -17,12 +17,7 @@ export const PresentationPage = () => {
     slides = data;
   });
 
-  const edit_user = modifyDiaporama(id);
-
   const handleNewSlide = () => {
-    const newSlide = {
-      content: "",
-    };
     addNewSlide(id);
   }
 
